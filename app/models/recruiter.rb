@@ -9,6 +9,6 @@ class Recruiter < ApplicationRecord
   validates :company_name, presence: true, uniqueness: true
   validates :company_about, length: { maximum: 200 }
   validates :password, presence: true
-
+  has_secure_password
   # validates :company_website,
 end

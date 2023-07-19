@@ -6,9 +6,8 @@ class Job < ApplicationRecord
   #Validations
   validates :title, presence: true
   validates :category, presence: true
-  validates :type, presence: true
+  validates :job_type, presence: true
   validates :salary, presence: true, numericality: { greater_than: 0}
   validates :mandatory, presence: true
-  validates :optional_req, optional: true
   validates :about, presence: true
 end

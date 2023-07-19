@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_054943) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_170208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,12 +67,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_054943) do
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "category"
-    t.string "type"
+    t.string "job_type"
     t.integer "salary"
     t.text "mandatory"
     t.text "optional_req"
     t.text "about"
-    t.integer "application_count"
+    t.integer "application_count", default: 0
     t.bigint "recruiter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,12 +85,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_054943) do
     t.date "birth_date"
     t.string "linkedin"
     t.integer "phone"
-    t.string "password"
     t.string "professional_title"
     t.text "experience"
     t.text "education"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_professionals_on_email"
   end
 
@@ -99,9 +99,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_054943) do
     t.string "company_name"
     t.string "company_website"
     t.text "company_about"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
     t.index ["company_name"], name: "index_recruiters_on_company_name"
     t.index ["email"], name: "index_recruiters_on_email"
   end

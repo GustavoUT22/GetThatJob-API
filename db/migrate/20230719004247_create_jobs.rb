@@ -8,7 +8,7 @@ class CreateJobs < ActiveRecord::Migration[7.0]
       t.text :mandatory
       t.text :optional
       t.text :about
-      t.integer :application_count
+      t.integer :application_count, default: 0
       t.references :recruiter, null: false, foreign_key: true
 
       t.timestamps

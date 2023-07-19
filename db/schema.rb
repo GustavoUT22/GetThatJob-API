@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_170208) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_201649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,7 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_170208) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "token"
     t.index ["email"], name: "index_professionals_on_email"
+    t.index ["token"], name: "index_professionals_on_token", unique: true
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -101,8 +103,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_170208) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "token"
     t.index ["company_name"], name: "index_recruiters_on_company_name"
     t.index ["email"], name: "index_recruiters_on_email"
+    t.index ["token"], name: "index_recruiters_on_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

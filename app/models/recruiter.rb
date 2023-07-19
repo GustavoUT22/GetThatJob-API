@@ -10,5 +10,11 @@ class Recruiter < ApplicationRecord
   validates :company_about, length: { maximum: 200 }
   validates :password, presence: true
   has_secure_password
+  has_secure_token
   # validates :company_website,
+
+  def invalid_token
+    update(token: nil)
+  end
+  
 end

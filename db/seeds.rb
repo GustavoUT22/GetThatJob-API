@@ -99,3 +99,42 @@ jobs_type = ["Full Time", "Part Time", "Internship"]
   end
 end
 
+10.times do |index|
+  applications = Application.create(
+    experience: Faker::Lorem.paragraphs(number: 2) ,
+    why_interested: Faker::Lorem.paragraphs(number: 2) ,
+    job_id: Job.all.ids.sample,
+    professional_id: Professional.all.ids.sample,
+  )
+  if applications.save
+    print "."
+  else
+    puts ""
+    puts "F"
+    puts applications.errors.full_messages.join(", ")
+  end
+end
+
+20.times { follows = Follow.create(professional: Professional.all.sample, followable: Job.all.sample)
+  if follows.save
+    print "."
+  else
+    puts ""
+    puts "F"
+    puts follows.errors.full_messages.join(", ")
+  end
+}
+
+20.times { follows = Follow.create(professional: Professional.all.sample, followable: Recruiter.all.sample)
+  if follows.save
+    print "."
+  else
+    puts ""
+    puts "F"
+    puts follows.errors.full_messages.join(", ")
+  end
+}
+# follow = Follow.create(professional: current_professional, followable: recruiter)
+
+
+# 15.times { Like.create(user:user1, tweet: Tweet.all.sample) }

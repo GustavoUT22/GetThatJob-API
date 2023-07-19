@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_170208) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.boolean "following"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "professional_id", null: false

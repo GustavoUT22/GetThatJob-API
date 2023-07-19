@@ -50,4 +50,10 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy"
 
+  # resource :profile, except: %i[index create], controller: :professionals
+
+  resources :professionals, only: :create
+  get "/profile", to: "professionals#show"
+  patch "/profile", to: "professionals#update"
+
 end

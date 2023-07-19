@@ -9,6 +9,10 @@ class ApplicationController < ActionController::API
     respond_unauthorized("Access Denied")
   end
 
+  def current_user
+    @current_user ||= authenticate_token
+  end
+
   def respond_unauthorized(message)
     render json: { error: message }, status: :unauthorized
   end
@@ -17,7 +21,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_token
     authenticate_with_http_token do |token, _options|
-      Professional.find_by(token: token) # <# User > || nil
+      Professional.where(token: token).first
     end
   end
 

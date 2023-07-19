@@ -23,4 +23,9 @@ class Professional < ApplicationRecord
     professional
   end
 
-end 
+  # def self.valid_login?(email, password)
+  #   user = find_by(email: email)
+  #   user if user&.authenticate(password)
+  # end
+
+end

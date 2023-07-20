@@ -1,4 +1,5 @@
 class RecruitersController < ApplicationController
+  skip_before_action :authorize, only: :create
   def index
   end
 
@@ -6,6 +7,7 @@ class RecruitersController < ApplicationController
   end
 
   def show
+    render json: current_user
   end
 
   def create
@@ -15,5 +17,9 @@ class RecruitersController < ApplicationController
   end
 
   def update
+  end
+
+  def professional_params
+    params.permit(:email, :password, :token)
   end
 end

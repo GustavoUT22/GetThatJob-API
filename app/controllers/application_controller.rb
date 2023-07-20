@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
 
   def authenticate_token
     authenticate_with_http_token do |token, _options|
-      Professional.where(token: token).first
+      Professional.where(token: token).first || Recruiter.where(token: token).first
     end
   end
 

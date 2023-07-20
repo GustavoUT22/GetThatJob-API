@@ -41,10 +41,12 @@ puts "Create New Professionals"
     company_name: Faker::Company.name  ,
     email: "recruiter#{index+1}@gmail.com",
     password: "123456",
+    # company_logo: 
     # birth_day: "01-04-199#{index}",
     # first_name: "User #{index+1}",
     # last_name: "User last name #{index+1}"
   )
+  recruiter_account.company_logo.attach(io: File.open('db/images/Auto.png'), filename: 'Auto.png')
   if recruiter_account.save
     print "."
   else

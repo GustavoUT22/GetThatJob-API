@@ -1,6 +1,13 @@
+require 'pry'
 class ApplicationsController < ApplicationController
   def index
-
+    binding.pry
+    if current_user.company_name?
+      @jobs = current_name.jobs
+      render json: @jobs
+    else
+      
+    end
     @jobs = Job.all
 
     render json: @jobs

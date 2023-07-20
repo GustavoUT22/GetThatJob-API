@@ -4,9 +4,9 @@ class Professional < ApplicationRecord
   has_many :applications, counter_cache: true, dependent: :destroy
   has_many :follows, counter_cache: true, dependent: :destroy
   #Validations
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true,  format: { with: VALID_EMAIL_REGEX }
-  # validates :password, presence: true
+  
   has_secure_password
   has_secure_token
 

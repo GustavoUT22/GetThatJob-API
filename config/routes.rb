@@ -49,15 +49,19 @@ Rails.application.routes.draw do
   # post "/signup" => "sessions#create"
   post "/login/professionals" => "sessions#create"
   delete "/logout/professionals" => "sessions#destroy"
-  resources :professionals, only: :create
+  post "/signup/professionals" => "professionals#create"
+  resources :professionals
   get "/profile/professionals", to: "professionals#show"
-  patch "/profile/professionals", to: "professionals#update"
+  patch "/profile/professionals/:id", to: "professionals#update"
+
+
 
   post "/login/recruiters" => "recsessions#create"
   delete "/logout/recruiters" => "recsessions#destroy"
-  resources :recruiters, only: :create
-  get "/profile/recruiters", to: "professionals#show"
-  patch "/profile/recruiters", to: "professionals#update"
+  post "/signup/recruiters" => "recruiters#create"
+  resources :recruiters
+  get "/profile/recruiters", to: "recruiters#show"
+  patch "/profile/recruiters/:id", to: "recruiters#update"
 
   # resource :profile, except: %i[index create], controller: :professionals
   resources :jobs

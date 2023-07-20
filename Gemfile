@@ -49,4 +49,5 @@ group :development do
   gem 'rack-cors'
   gem 'pry', '~> 0.13.1'
   gem "rubocop-rails", require: false
+  gem 'pry', '~> 0.13.1'
 end

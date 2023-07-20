@@ -16,6 +16,7 @@ module Getthatjobrails
         origins 'http://localhost:5173' # Reemplaza con la URL correcta de tu cliente
         resource "/login/professionals", headers: :any, methods: [:get, :post, :options]
         resource "/login/recruiters", headers: :any, methods: [:get, :post, :options]
+        resource "/logout/professionals", headers: :any, methods: [:delete]
       end
     end
     # Configuration for the application, engines, and railties goes here.

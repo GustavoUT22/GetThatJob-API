@@ -1,6 +1,6 @@
 class Recruiter < ApplicationRecord
   #Associations
-  has_many :jobs, counter_cache: true
+  has_many :jobs, counter_cache: true, dependent: :destroy
   has_many :follows, counter_cache: true
   has_one_attached :logo
   #Validations

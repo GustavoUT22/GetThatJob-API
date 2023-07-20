@@ -62,5 +62,6 @@ Rails.application.routes.draw do
   # resource :profile, except: %i[index create], controller: :professionals
   resources :jobs
   resources :follows
+  resources :applications
 
 end

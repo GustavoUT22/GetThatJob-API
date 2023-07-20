@@ -1,5 +1,7 @@
 class FollowsController < ApplicationController
   def index
+    @follows = current_user.follows.all
+    render json: @follows
   end
 
   def new

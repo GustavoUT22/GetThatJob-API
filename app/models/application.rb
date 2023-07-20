@@ -1,7 +1,7 @@
 class Application < ApplicationRecord
   #Associations
   belongs_to :professional
-  belongs_to :job
+  belongs_to :job, counter_cache: true
   has_one_attached :cv
   #validations
   validates :experience, presence: true, length: { minimum: 50 }

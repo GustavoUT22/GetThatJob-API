@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   patch "/profile/recruiters", to: "professionals#update"
 
   # resource :profile, except: %i[index create], controller: :professionals
-
+  resources :jobs
+  resources :follows
 
 end

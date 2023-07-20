@@ -99,7 +99,7 @@ jobs_type = ["Full Time", "Part Time", "Internship"]
   end
 end
 
-10.times do |index|
+30.times do |index|
   applications = Application.create(
     experience: Faker::Lorem.paragraphs(number: 2) ,
     why_interested: Faker::Lorem.paragraphs(number: 2) ,

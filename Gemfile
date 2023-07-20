@@ -47,4 +47,5 @@ group :development do
   gem "rubocop", require: false
   gem 'faker'
   gem "rubocop-rails", require: false
+  gem 'pry', '~> 0.13.1'
 end

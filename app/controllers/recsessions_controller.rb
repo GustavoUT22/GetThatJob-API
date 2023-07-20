@@ -14,7 +14,7 @@ class RecsessionsController < ApplicationController
     if recruiter&.authenticate(params[:password])
        # regenerar el token
       recruiter.regenerate_token
-      render json: { token: recruiter.token }
+      render json: recruiter
     else
       render json: { error: "Incorrect email or password" }, status: :unauthorized
     end

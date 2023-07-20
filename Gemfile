@@ -46,5 +46,7 @@ group :development do
   # gem "spring"
   gem "rubocop", require: false
   gem 'faker'
+  gem 'rack-cors'
+  gem 'pry', '~> 0.13.1'
   gem "rubocop-rails", require: false
 end

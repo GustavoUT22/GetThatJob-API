@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
     if professional&.authenticate(params[:password])
        # regenerar el token
       professional.regenerate_token
-      render json: { token: professional.token }
+      # render json: { token: professional.token }
+      render json: professional
     else
       render json: { error: "Incorrect email or password" }, status: :unauthorized
     end

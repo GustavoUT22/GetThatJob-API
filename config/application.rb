@@ -15,6 +15,8 @@ module Getthatjobrails
       allow do
         origins 'http://localhost:5173' # Reemplaza con la URL correcta de tu cliente
         resource "/login/professionals", headers: :any, methods: [:get, :post, :options]
+        resource "/profile/professionals", headers: :any, methods: [:get, :post, :patch, :options]
+        resource "/profile/recruiters", headers: :any, methods: [:get, :post, :patch, :options]
         resource "/login/recruiters", headers: :any, methods: [:get, :post, :options]
         resource "/logout/professionals", headers: :any, methods: [:delete]
         resource "/jobs", headers: :any, methods: [:get]

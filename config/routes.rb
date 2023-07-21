@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   post "/signup/professionals" => "professionals#create"
   resources :professionals
   get "/profile/professionals", to: "professionals#show"
-  patch "/profile/professionals/:id", to: "professionals#update"
+  patch "/profile/professionals", to: "professionals#update"
 
 
 
@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   post "/signup/recruiters" => "recruiters#create"
   resources :recruiters
   get "/profile/recruiters", to: "recruiters#show"
-  patch "/profile/recruiters/:id", to: "recruiters#update"
+  patch "/profile/recruiters/", to: "recruiters#update"
 
   # resource :profile, except: %i[index create], controller: :professionals
   resources :jobs

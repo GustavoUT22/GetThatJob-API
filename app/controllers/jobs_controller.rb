@@ -33,7 +33,7 @@ class JobsController < ApplicationController
       }
     end
 
-    recruiter_jobs = current_user.jobs.map do |job| 
+    recruiter_jobs = table_name == "recruiters" ? current_user.jobs.map do |job| 
       {
         id: job.id,
         title: job.title,
@@ -61,7 +61,7 @@ class JobsController < ApplicationController
           }
         end
       }
-    end
+    end : []
     @jobs = table_name == "recruiters" ? recruiter_jobs : jobs
     render json: @jobs
   end
@@ -71,6 +71,7 @@ class JobsController < ApplicationController
 
   def show
     job = Job.all.find(params[:id])
+    # @job = job.attributes.merge(applications: job.applications)
     @job = job.attributes.merge(applications: job.applications.map do |apply|
       {
         id: apply.id,
@@ -84,56 +85,8 @@ class JobsController < ApplicationController
         status: apply.status
       }
     end)
-  #   jobs = job.map do |j| {
-  #     id: j.id,
-  #     title: j.title,
-  #     category: j.category,
-  #     job_type: j.job_type,
-  #     salary: j.salary,
-  #     mandatory: j.mandatory,
-  #     optional_req: j.optional_req,
-  #     about: j.about,
-  #     applications_count: j.applications_count,
-  #     created_at: j.created_at,
-  #     updated_at: j.updated_at,
-  #     # Otros atributos del j
-  #     company_name: j.recruiter&.company_name,
-  #     applications: j.applications.map do |apply|
-  #       {
-  #         id: apply.id,
-  #         professional: apply.professional,
-  #         job: apply.job,
-  #         company_name: apply.job.recruiter.company_name,
-  #         experience: apply.experience,
-  #         why_interested: apply.why_interested,
-  #         created_at: apply.created_at,
-  #         updated_at: apply.updated_at,
-  #         status: apply.status
-  #       }
-  #     end
-  #   }
 
-  #  end
-    # professional_job = {
-    #   id: job.id,
-    #   title: job.title,
-    #   category: job.category,
-    #   job_type: job.job_type,
-    #   salary: job.salary,
-    #   mandatory: job.mandatory,
-    #   optional_req: job.optional_req,
-    #   about: job.about,
-    #   applications_count: job.applications_count,
-    #   created_at: job.created_at,
-    #   updated_at: job.updated_at,
-    #   # Otros atributos del job
-    #   company_name: job.recruiter&.company_name # Usamos el operador &. para evitar errores si no hay recruiter asociado
-    # }
-    # recruiter_job = Job.all.find(params[:id])
-    # @apps = @job.applications
-    # @jobs = table_name == "recruiters" ? jobs : job
     render json: @job
-  
   end
 
   def create

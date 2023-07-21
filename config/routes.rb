@@ -74,4 +74,5 @@ Rails.application.routes.draw do
   resources :jobs
   post "/jobs" => "jobs#create"
   get "/jobs/:id" => "jobs#show"
+  get "/jobs" => "jobs#index"
 end

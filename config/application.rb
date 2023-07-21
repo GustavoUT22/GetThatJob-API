@@ -22,7 +22,7 @@ module Getthatjobrails
         resource "/jobs", headers: :any, methods: [:get, :post]
         resource "/jobs/:id", headers: :any, methods: [:get, :options]
         resource "/application", headers: :any, methods: [:post, :options]
-        resource "/applications", headers: :any, methods: [:get, :options]
+        resource "/applications", headers: :any, methods: [:post, :get, :options]
         resource "/applications/:id", headers: :any, methods: [:delete]
         resource "/signup/professionals", headers: :any, methods: [:get, :post, :patch, :options]
         resource "/signup/recruiters", headers: :any, methods: [:get, :post, :patch, :options]

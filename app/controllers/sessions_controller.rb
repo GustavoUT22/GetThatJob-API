@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     professional = Professional.find_by(email: params[:email]) # nil || <# User/>
     if professional&.authenticate(params[:password])
-       # regenerar el token
+      # regenerar el token
       professional.regenerate_token
       # render json: { token: professional.token }
       render json: professional

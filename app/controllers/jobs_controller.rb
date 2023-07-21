@@ -15,7 +15,24 @@ class JobsController < ApplicationController
     #   return
     # end
     table_name = current_user.class.table_name
-    @jobs = table_name == "recruiters" ? current_user.jobs : Job.all
+    jobs = Job.all.map do |job|
+      {
+        id: job.id,
+        title: job.title,
+        category: job.category,
+        job_type: job.job_type,
+        salary: job.salary,
+        mandatory: job.mandatory,
+        optional_req: job.optional_req,
+        about: job.about,
+        applications_count: job.applications_count,
+        created_at: job.created_at,
+        updated_at: job.updated_at,
+        # Otros atributos del job
+        company_name: job.recruiter&.company_name # Usamos el operador &. para evitar errores si no hay recruiter asociado
+      }
+    end
+    @jobs = table_name == "recruiters" ? current_user.jobs : jobs
     render json: @jobs
   end
 
@@ -23,6 +40,24 @@ class JobsController < ApplicationController
   end
 
   def show
+    job = Job.all.find(params[:id])
+    @job = {
+      id: job.id,
+      title: job.title,
+      category: job.category,
+      job_type: job.job_type,
+      salary: job.salary,
+      mandatory: job.mandatory,
+      optional_req: job.optional_req,
+      about: job.about,
+      applications_count: job.applications_count,
+      created_at: job.created_at,
+      updated_at: job.updated_at,
+      # Otros atributos del job
+      company_name: job.recruiter&.company_name # Usamos el operador &. para evitar errores si no hay recruiter asociado
+    }
+    # @apps = @job.applications
+    render json: @job
   end
 
   def create

@@ -23,6 +23,7 @@ module Getthatjobrails
         resource "/jobs/:id", headers: :any, methods: [:get, :options]
         resource "/application", headers: :any, methods: [:post, :options]
         resource "/applications", headers: :any, methods: [:get, :options]
+        resource "/signup/professionals", headers: :any, methods: [:get, :post, :patch, :options]
       end
     end
     # Configuration for the application, engines, and railties goes here.

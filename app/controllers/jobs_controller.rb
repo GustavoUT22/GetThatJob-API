@@ -61,11 +61,22 @@ class JobsController < ApplicationController
   end
 
   def create
+    @job = Job.new(job_params)
+
+    if @job.save
+      render json: @job, status: :created # 201
+    else
+      render json: { errors: @job.errors }, status: :unprocessable_entity
+    end
   end
 
   def destroy
   end
 
   def update
+    
+  end
+  def job_params
+    params.permit(:recruiter_id, :title, :category, :job_type, :salary, :mandatory, :optional_req, :about)
   end
 end

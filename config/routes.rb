@@ -64,10 +64,11 @@ Rails.application.routes.draw do
   patch "/profile/recruiters/", to: "recruiters#update"
 
   # resource :profile, except: %i[index create], controller: :professionals
-  resources :jobs
   resources :follows
   resources :applications
 
   post "/application" => "applications#create"
-
+  resources :jobs
+  post "/jobs" => "jobs#create"
+  get "/jobs", to: "jobs#show"
 end

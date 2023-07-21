@@ -38,6 +38,16 @@ class ApplicationsController < ApplicationController
   end
 
   def destroy
+      @application = Application.find(params[:id])
+  
+      # Verificar si la aplicación pertenece al usuario actual
+      if @application.professional_id == current_user.id
+        @application.destroy
+        render json: { message: 'Application successfully deleted.' }, status: :ok
+      else
+        render json: { error: 'You are not authorized to delete this application.' }, status: :unauthorized
+      end
+  
   end
 
   def update

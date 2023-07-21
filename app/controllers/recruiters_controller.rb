@@ -4,9 +4,10 @@ class RecruitersController < ApplicationController
    
   end
   def show
-    @current_user = current_user.joins(:company_logo)
-    render json: @current_user.as_json(only: %i[name]).merge(
-      company_path: url_for(@current_user.company_logo))
+    # @current_user = current_user.joins(:company_logo)
+    # render json: @current_user.as_json(only: %i[name]).merge(
+    #   company_path: url_for(@current_user.company_logo))
+    render json: current_user
   end
 
   def new

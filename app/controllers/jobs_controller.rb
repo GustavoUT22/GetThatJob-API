@@ -32,7 +32,37 @@ class JobsController < ApplicationController
         company_name: job.recruiter&.company_name # Usamos el operador &. para evitar errores si no hay recruiter asociado
       }
     end
-    @jobs = table_name == "recruiters" ? current_user.jobs : jobs
+
+    recruiter_jobs = current_user.jobs.map do |job| 
+      {
+        id: job.id,
+        title: job.title,
+        category: job.category,
+        job_type: job.job_type,
+        salary: job.salary,
+        mandatory: job.mandatory,
+        optional_req: job.optional_req,
+        about: job.about,
+        applications_count: job.applications_count,
+        created_at: job.created_at,
+        updated_at: job.updated_at,
+        # Otros atributos del job
+        applications: job.applications.map do |apply|
+          {
+            id: apply.id,
+            professional: apply.professional,
+            job: apply.job,
+            company_name: apply.job.recruiter.company_name,
+            experience: apply.experience,
+            why_interested: apply.why_interested,
+            created_at: apply.created_at,
+            updated_at: apply.updated_at,
+            status: apply.status
+          }
+        end
+      }
+    end
+    @jobs = table_name == "recruiters" ? recruiter_jobs : jobs
     render json: @jobs
   end
 

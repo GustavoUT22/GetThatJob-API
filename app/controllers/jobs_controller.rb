@@ -71,7 +71,19 @@ class JobsController < ApplicationController
 
   def show
     job = Job.all.find(params[:id])
-    @job = job.attributes.merge(applications: job.applications)
+    @job = job.attributes.merge(applications: job.applications.map do |apply|
+      {
+        id: apply.id,
+        professional: apply.professional,
+        job: apply.job,
+        company_name: apply.job.recruiter.company_name,
+        experience: apply.experience,
+        why_interested: apply.why_interested,
+        created_at: apply.created_at,
+        updated_at: apply.updated_at,
+        status: apply.status
+      }
+    end)
   #   jobs = job.map do |j| {
   #     id: j.id,
   #     title: j.title,

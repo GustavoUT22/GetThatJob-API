@@ -26,6 +26,7 @@ module Getthatjobrails
         resource "/applications/:id", headers: :any, methods: [:delete]
         resource "/signup/professionals", headers: :any, methods: [:get, :post, :patch, :options]
         resource "/signup/recruiters", headers: :any, methods: [:get, :post, :patch, :options]
+        resource "/follows", headers: :any, methods: [:get, :options]
       end
     end
     # Configuration for the application, engines, and railties goes here.

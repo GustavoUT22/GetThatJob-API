@@ -1,11 +1,8 @@
 require 'pry'
 class ApplicationsController < ApplicationController
   def index
-   
-   
-    @jobs = Job.all
-
-    render json: @jobs
+    @applications = current_user.applications
+    render json: @applications
   end
 
   def new

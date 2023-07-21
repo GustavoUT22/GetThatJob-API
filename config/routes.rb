@@ -67,7 +67,8 @@ Rails.application.routes.draw do
   resources :follows
   resources :applications
 
-  post "/application" => "applications#create"
+  post "/applications" => "applications#create"
+
   resources :jobs
   post "/jobs" => "jobs#create"
   get "/jobs", to: "jobs#show"

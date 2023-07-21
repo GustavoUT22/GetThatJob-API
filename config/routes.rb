@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   post "/login/professionals" => "sessions#create"
   delete "/logout/professionals" => "sessions#destroy"
   post "/signup/professionals" => "professionals#create"
+  patch "/signup/professionals" => "professionals#update"
   resources :professionals
   get "/profile/professionals", to: "professionals#show"
   patch "/profile/professionals", to: "professionals#update"
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
   post "/login/recruiters" => "recsessions#create"
   delete "/logout/recruiters" => "recsessions#destroy"
   post "/signup/recruiters" => "recruiters#create"
+  patch "/signup/recruiters" => "recruiters#update"
   resources :recruiters
   get "/profile/recruiters", to: "recruiters#show"
   patch "/profile/recruiters/", to: "recruiters#update"

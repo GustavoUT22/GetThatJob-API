@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   post "/login/professionals" => "sessions#create"
   delete "/logout/professionals" => "sessions#destroy"
   post "/signup/professionals" => "professionals#create"
+  patch "/signup/professionals" => "professionals#update"
   resources :professionals
   get "/profile/professionals", to: "professionals#show"
   patch "/profile/professionals", to: "professionals#update"

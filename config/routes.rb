@@ -71,5 +71,5 @@ Rails.application.routes.draw do
 
   resources :jobs
   post "/jobs" => "jobs#create"
-  get "/jobs", to: "jobs#show"
+  get "/jobs/:id" => "jobs#show"
 end

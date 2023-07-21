@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   post "/login/recruiters" => "recsessions#create"
   delete "/logout/recruiters" => "recsessions#destroy"
   post "/signup/recruiters" => "recruiters#create"
+  patch "/signup/recruiters" => "recruiters#update"
   resources :recruiters
   get "/profile/recruiters", to: "recruiters#show"
   patch "/profile/recruiters/", to: "recruiters#update"

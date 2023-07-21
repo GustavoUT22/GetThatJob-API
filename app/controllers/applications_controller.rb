@@ -1,7 +1,18 @@
 require 'pry'
 class ApplicationsController < ApplicationController
   def index
-    @applications = current_user.applications
+    @applications = current_user.applications.map do |apply|
+      {
+        id: apply.id,
+        professional_id: apply.professional_id,
+        job: apply.job,
+        experience: apply.experience,
+        why_interested: apply.why_interested,
+        created_at: apply.created_at,
+        updated_at: apply.updated_at,
+        status: apply.status
+      }
+    end
     render json: @applications
   end
 

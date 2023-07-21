@@ -87,9 +87,9 @@ jobs_type = ["Full Time", "Part Time", "Internship"]
     category: jobs_category.sample,
     job_type: jobs_type.sample,
     salary: rand(1000..5000),
-    mandatory: Faker::Lorem.paragraphs(number: 1) ,
-    optional_req: Faker::Lorem.paragraphs(number: 1) ,
-    about: Faker::Lorem.paragraphs(number: 1) ,
+    mandatory: Faker::Lorem.paragraph_by_chars(number: 240) ,
+    optional_req: Faker::Lorem.paragraph_by_chars(number: 240) ,
+    about: Faker::Lorem.paragraph_by_chars(number: 240) ,
     recruiter_id: Recruiter.all.ids.sample,
   )
   if jobs.save
@@ -103,8 +103,8 @@ end
 
 30.times do |index|
   applications = Application.create(
-    experience: Faker::Lorem.paragraphs(number: 2) ,
-    why_interested: Faker::Lorem.paragraphs(number: 2) ,
+    experience: Faker::Lorem.paragraph_by_chars(number: 400),
+    why_interested: Faker::Lorem.paragraph_by_chars(number: 400) ,
     job_id: Job.all.ids.sample,
     professional_id: Professional.all.ids.sample,
   )

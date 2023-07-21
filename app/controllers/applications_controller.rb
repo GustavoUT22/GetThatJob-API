@@ -2,18 +2,14 @@ require 'pry'
 class ApplicationsController < ApplicationController
   def index
     binding.pry
-    if current_user.company_name?
-      @jobs = current_name.jobs
-      render json: @jobs
-    else
-      
-    end
+   
     @jobs = Job.all
 
     render json: @jobs
   end
 
   def new
+
   end
 
   def show
@@ -23,6 +19,13 @@ class ApplicationsController < ApplicationController
   end
 
   def create
+    @application = Application.new(application_params)
+
+    if @application.save
+      render json: @application, status: :created
+    else
+      render json: @application.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -32,5 +35,9 @@ class ApplicationsController < ApplicationController
   end
   def set_job
     @job = current_user.jobs.find(params[:id])
+  end
+
+  def application_params
+    params.permit(:experience, :why_interested, :job_id, :professional_id)
   end
 end

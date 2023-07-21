@@ -68,4 +68,6 @@ Rails.application.routes.draw do
   resources :follows
   resources :applications
 
+  post "/application" => "applications#create"
+
 end

@@ -15,8 +15,8 @@ class JobsController < ApplicationController
     #   return
     # end
     table_name = current_user.class.table_name
-    follow = current_user.follows.where(followable_type: "Job")
-    followed_job_ids = follow.map { |follow| follow.followable_id }
+    follow = table_name == "professionals" ? current_user.follows.where(followable_type: "Job") : []
+    followed_job_ids = table_name == "professionals" ? follow.map { |follow| follow.followable_id } : []
     jobs = Job.all.map do |job|
       {
         id: job.id,

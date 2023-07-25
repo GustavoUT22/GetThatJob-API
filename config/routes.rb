@@ -63,7 +63,8 @@ Rails.application.routes.draw do
   patch "/signup/recruiters" => "recruiters#update"
   resources :recruiters
   get "/profile/recruiters", to: "recruiters#show"
-  patch "/profile/recruiters/", to: "recruiters#update"
+  patch "/profile/recruiters", to: "recruiters#update"
+  patch "/recruiters/applications", to: "recruiters#update"
 
   # resource :profile, except: %i[index create], controller: :professionals
   resources :follows

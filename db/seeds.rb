@@ -107,6 +107,7 @@ end
     why_interested: Faker::Lorem.paragraph_by_chars(number: 400) ,
     job_id: Job.all.ids.sample,
     professional_id: Professional.all.ids.sample,
+    status: "Waiting for review"
   )
   if applications.save
     print "."

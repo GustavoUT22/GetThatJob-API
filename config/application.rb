@@ -17,6 +17,7 @@ module Getthatjobrails
         resource "/login/professionals", headers: :any, methods: [:get, :post, :options]
         resource "/profile/professionals", headers: :any, methods: [:get, :post, :patch, :options]
         resource "/profile/recruiters", headers: :any, methods: [:get, :post, :patch, :options]
+        resource "/recruiters/applications", headers: :any, methods: [:get, :patch, :options]
         resource "/login/recruiters", headers: :any, methods: [:get, :post, :options]
         resource "/logout/professionals", headers: :any, methods: [:delete]
         resource "/jobs", headers: :any, methods: [:get, :post]

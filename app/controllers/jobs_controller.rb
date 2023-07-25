@@ -15,9 +15,13 @@ class JobsController < ApplicationController
     #   return
     # end
     table_name = current_user.class.table_name
+    follow = current_user.follows.where(followable_type: "Job")
+    followed_job_ids = follow.map { |follow| follow.followable_id }
     jobs = Job.all.map do |job|
       {
         id: job.id,
+        company_name: job.recruiter&.company_name,
+        company_logo: rails_blob_url(job.recruiter.company_logo), # Usamos el operador &. para evitar errores si no hay recruiter asociado
         title: job.title,
         category: job.category,
         job_type: job.job_type,
@@ -28,8 +32,8 @@ class JobsController < ApplicationController
         applications_count: job.applications_count,
         created_at: job.created_at,
         updated_at: job.updated_at,
+        follow: followed_job_ids.include?(job.id)
         # Otros atributos del job
-        company_name: job.recruiter&.company_name # Usamos el operador &. para evitar errores si no hay recruiter asociado
       }
     end
 

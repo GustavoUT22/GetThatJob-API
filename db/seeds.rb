@@ -36,7 +36,11 @@ end
 
 puts "Create New Professionals"
 
+images = ["Auto.png","Account.png","Baby.png", "Banana.png" , "Cube.png", "Dance.png","Greens.png", "Web.png","Yoga.png"]
+
 10.times do |index|
+  img = images.sample
+  img_path = Rails.root.join('db', 'images', img)
   recruiter_account = Recruiter.create(
     company_name: Faker::Company.name  ,
     email: "recruiter#{index+1}@gmail.com",
@@ -46,7 +50,7 @@ puts "Create New Professionals"
     # first_name: "User #{index+1}",
     # last_name: "User last name #{index+1}"
   )
-  recruiter_account.company_logo.attach(io: File.open('db/images/Auto.png'), filename: 'Auto.png')
+  recruiter_account.company_logo.attach(io: File.open(img_path), filename: img)
   if recruiter_account.save
     print "."
   else

@@ -7,6 +7,7 @@ class ApplicationsController < ApplicationController
         professional_id: apply.professional_id,
         job: apply.job,
         company_name: apply.job.recruiter.company_name,
+        company_logo: rails_blob_url(apply.job.recruiter.company_logo),
         experience: apply.experience,
         why_interested: apply.why_interested,
         created_at: apply.created_at,

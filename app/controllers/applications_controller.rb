@@ -52,12 +52,22 @@ class ApplicationsController < ApplicationController
   end
 
   def update
+    @app = Application.all.find(params[:id])
+
+    if @app.update(application_params)
+      render json: @app, status: :ok
+    else
+      render json: { errors: @app.errors }, status: :unprocessable_entity
+    end
+
   end
+
+
   def set_job
     @job = current_user.jobs.find(params[:id])
   end
 
   def application_params
-    params.permit(:experience, :why_interested, :job_id, :professional_id)
+    params.permit(:experience, :why_interested, :job_id, :professional_id, :status)
   end
 end

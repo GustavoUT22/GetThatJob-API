@@ -75,4 +75,7 @@ Rails.application.routes.draw do
   post "/jobs" => "jobs#create"
   get "/jobs/:id" => "jobs#show"
   get "/jobs" => "jobs#index"
+
+  post "/follows" => "follows#create"
+  delete "/follows/:id" => "follows#destroy"
 end

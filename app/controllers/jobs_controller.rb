@@ -133,6 +133,12 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    @job = Job.find_by(id: params[:id])
+    if @job.destroy
+      render json: { message: 'Job successfully deleted.' }, status: :ok
+    else
+      render json: { error: 'You are not authorized to delete this job.' }, status: :unauthorized
+    end
   end
 
   def update

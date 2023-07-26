@@ -106,6 +106,8 @@ jobs_type = ["Full Time", "Part Time", "Internship"]
 end
 
 30.times do |index|
+  cv = "example.pdf"
+  cv_path = Rails.root.join('db', 'images', cv)
   applications = Application.create(
     experience: Faker::Lorem.paragraph_by_chars(number: 400),
     why_interested: Faker::Lorem.paragraph_by_chars(number: 400) ,
@@ -113,6 +115,7 @@ end
     professional_id: Professional.all.ids.sample,
     status: "Waiting for review"
   )
+  applications.cv.attach(io: File.open(cv_path), filename: cv)
   if applications.save
     print "."
   else

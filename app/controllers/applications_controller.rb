@@ -12,7 +12,8 @@ class ApplicationsController < ApplicationController
         why_interested: apply.why_interested,
         created_at: apply.created_at,
         updated_at: apply.updated_at,
-        status: apply.status
+        status: apply.status,
+        cv: rails_blob_url(apply.cv)
       }
     end
     render json: @applications

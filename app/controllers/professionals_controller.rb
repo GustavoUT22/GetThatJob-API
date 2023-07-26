@@ -26,7 +26,11 @@ class ProfessionalsController < ApplicationController
   end
 
   def update
-    if current_user.update(professional_params)
+    # permitted_params = professional_params.merge(resume: params[:professional][:resume])
+    # binding.pry
+    current_user.resume.attach(params[:resume]) if params[:resume]
+    data = professional_params.except("resume")
+    if current_user.update(data)
       render json: current_user, status: :ok
     else
       render json: { errors: current_user.errors }, status: :unprocessable_entity
@@ -45,6 +49,6 @@ class ProfessionalsController < ApplicationController
                   :professional_title,
                   :experience,
                   :education,
-                  :resume)
+                  :resume, :token)
   end
 end

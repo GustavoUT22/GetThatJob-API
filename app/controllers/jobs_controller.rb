@@ -74,23 +74,51 @@ class JobsController < ApplicationController
   end
 
   def show
-    job = Job.all.find(params[:id])
+    jobs = Job.all.find(params[:id])
+    
     # @job = job.attributes.merge(applications: job.applications)
-    @job = job.attributes.merge(applications: job.applications.map do |apply|
-      {
-        id: apply.id,
-        professional: apply.professional,
-        job: apply.job,
-        company_name: apply.job.recruiter.company_name,
-        experience: apply.experience,
-        why_interested: apply.why_interested,
-        created_at: apply.created_at,
-        updated_at: apply.updated_at,
-        status: apply.status
-      }
-    end)
+  #  work = jobs.attributes.merge(applications: jobs.applications.map do |apply|
+  #     {
+  #       id: apply.id,
+  #       professional: apply.professional,
+  #       job: apply.job,
+  #       company_name: apply.job.recruiter.company_name,
+  #       experience: apply.experience,
+  #       why_interested: apply.why_interested,
+  #       created_at: apply.created_at,
+  #       updated_at: apply.updated_at,
+  #       status: apply.status
+  #     }
+  #   end)
 
-    render json: @job
+    job = {
+      id: jobs["id"],
+      title: jobs["title"],
+      category: jobs["category"],
+      job_type: jobs["job_type"],
+      salary: jobs["salary"],
+      mandatory: jobs["mandatory"],
+      optional_req: jobs["optional_req"],
+      recruiter_id: jobs["recruiter_id"],
+      about: jobs["about"],
+      company_name: jobs.recruiter.company_name,
+      applications_count: jobs["applications_count"],
+      applications: jobs.applications.map do |apply|
+        {
+          id: apply.id,
+          professional: apply.professional,
+          job: apply.job,
+          company_name: apply.job.recruiter.company_name,
+          experience: apply.experience,
+          why_interested: apply.why_interested,
+          created_at: apply.created_at,
+          updated_at: apply.updated_at,
+          status: apply.status
+        }
+      end
+    }
+
+    render json: job
   end
 
   def create

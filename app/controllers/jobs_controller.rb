@@ -32,7 +32,8 @@ class JobsController < ApplicationController
         applications_count: job.applications_count,
         created_at: job.created_at,
         updated_at: job.updated_at,
-        follow: followed_job_ids.include?(job.id)
+        follow: followed_job_ids.include?(job.id),
+        # follow_id: followed_job_ids.include?(job.id) ? followed_job_ids.where(id: job.id ).id : nil
         # Otros atributos del job
       }
     end
@@ -101,6 +102,7 @@ class JobsController < ApplicationController
       optional_req: jobs["optional_req"],
       recruiter_id: jobs["recruiter_id"],
       about: jobs["about"],
+      created_at: jobs["created_at"],
       company_name: jobs.recruiter.company_name,
       applications_count: jobs["applications_count"],
       applications: jobs.applications.map do |apply|

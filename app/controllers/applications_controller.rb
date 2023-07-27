@@ -1,6 +1,7 @@
 require 'pry'
 class ApplicationsController < ApplicationController
   def index
+    table_name = current_user.class.table_name
     @applications = current_user.applications.map do |apply|
       {
         id: apply.id,
@@ -13,7 +14,7 @@ class ApplicationsController < ApplicationController
         created_at: apply.created_at,
         updated_at: apply.updated_at,
         status: apply.status,
-        cv: rails_blob_url(apply.cv)
+        cv: table_name == "recruiters" ? rails_blob_url(apply.cv) : []
       }
     end
     render json: @applications

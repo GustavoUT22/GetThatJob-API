@@ -28,7 +28,7 @@ class ProfessionalsController < ApplicationController
   def update
     # permitted_params = professional_params.merge(resume: params[:professional][:resume])
     # binding.pry
-    current_user.resume.attach(params[:resume]) if params[:resume]
+    params[:resume]? current_user.resume.attach(params[:resume]):[]
     data = professional_params.except("resume")
     if current_user.update(data)
       render json: current_user, status: :ok

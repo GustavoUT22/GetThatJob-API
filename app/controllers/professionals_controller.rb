@@ -15,9 +15,11 @@ class ProfessionalsController < ApplicationController
   end
 
   def create
-    @professional = Professional.new(professional_params)
+    # binding.pry
+    @professional = Professional.new(professional_params.except("resume"))
     #recruiter_account.company_logo.attach(io: File.open(img_path), filename: img)
-    @professional.resume.attach(filename: professional_params.resume)
+    # @professional.resume.attach(filename: professional_params.resume)
+    params[:resume]? @professional.resume.attach(params[:resume]):[]
     if @professional.save
       render json: @professional, status: :created # 201
     else

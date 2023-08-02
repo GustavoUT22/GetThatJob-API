@@ -1,6 +1,17 @@
 class FollowsController < ApplicationController
   def index
-    @follows = current_user.follows.all
+    follows = current_user.follows.all
+    @follows = follows.map do |follow|
+      {
+        id: follow.id,
+		    created_at: follow.created_at,
+		    updated_at: follow.updated_at,
+		    professional_id: follow.professional_id,
+		    followable_type: follow.followable_type,
+		    followable_id: follow.followable_id,
+        logo: follow.followable_type === "Job"? Job.all.where(id: follow.followable_id)[0].recruiter_id : "logo"
+      }
+    end
     render json: @follows
   end
 

@@ -90,7 +90,7 @@ jobs_type = ["Full Time", "Part Time", "Internship"]
     title: Faker::Job.title,
     category: jobs_category.sample,
     job_type: jobs_type.sample,
-    salary: rand(1000..5000),
+    salary: [rand(1000..2500),rand(2501..5000)],
     mandatory: Faker::Lorem.paragraph_by_chars(number: 240) ,
     optional_req: Faker::Lorem.paragraph_by_chars(number: 240) ,
     about: Faker::Lorem.paragraph_by_chars(number: 240) ,
@@ -120,7 +120,7 @@ end
     print "."
   else
     puts ""
-    puts "F"
+    puts "Fatach"
     puts applications.errors.full_messages.join(", ")
   end
 end
@@ -130,7 +130,7 @@ end
     print "."
   else
     puts ""
-    puts "F"
+    puts "Followerr"
     puts follows.errors.full_messages.join(", ")
   end
 }

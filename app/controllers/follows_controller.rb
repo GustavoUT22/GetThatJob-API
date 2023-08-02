@@ -9,7 +9,7 @@ class FollowsController < ApplicationController
 		    professional_id: follow.professional_id,
 		    followable_type: follow.followable_type,
 		    followable_id: follow.followable_id,
-        # logo: follow.followable_type === "Job"? Job.all.where(id: follow.followable_id)[0].recruiter_id : "logo"
+        logo: follow.followable_type == "Job" ? rails_blob_url(Recruiter.all.where(id: Job.all.where(id: follow.followable_id)[0].recruiter_id)[0].company_logo) : "logo"
       }
     end
     render json: @follows

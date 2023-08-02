@@ -126,7 +126,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-
+    binding.pry
     if @job.save
       render json: @job, status: :created # 201
     else
@@ -146,7 +146,9 @@ class JobsController < ApplicationController
   def update
     
   end
+
+
   def job_params
-    params.permit(:recruiter_id, :title, :category, :job_type, :salary, :mandatory, :optional_req, :about)
+    params.permit(:recruiter_id, :title, :category, :job_type, :mandatory, :optional_req, :about,salary: [])
   end
 end

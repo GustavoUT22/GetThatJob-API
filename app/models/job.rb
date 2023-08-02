@@ -9,4 +9,5 @@ class Job < ApplicationRecord
   validates :job_type, presence: true
   validates :mandatory, presence: true
   validates :about, presence: true
+  validates :salary, presence: true
 end

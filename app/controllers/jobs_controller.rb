@@ -33,6 +33,7 @@ class JobsController < ApplicationController
         created_at: job.created_at,
         updated_at: job.updated_at,
         follow: followed_job_ids.include?(job.id),
+        job_status: job.job_status
         # follow_id: followed_job_ids.include?(job.id) ? followed_job_ids.where(id: job.id ).id : nil
         # Otros atributos del job
       }
@@ -126,9 +127,18 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-    binding.pry
     if @job.save
       render json: @job, status: :created # 201
+    else
+      render json: { errors: @job.errors }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @job = Job.all.find(params[:id])
+
+    if @job.update(job_params)
+      render json: @job, status: :ok
     else
       render json: { errors: @job.errors }, status: :unprocessable_entity
     end
@@ -143,12 +153,7 @@ class JobsController < ApplicationController
     end
   end
 
-  def update
-    
-  end
-
-
   def job_params
-    params.permit(:recruiter_id, :title, :category, :job_type, :mandatory, :optional_req, :about,salary: [])
+    params.permit(:recruiter_id, :title, :category, :job_type, :mandatory, :optional_req, :job_status, :about,salary: [])
   end
 end

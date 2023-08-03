@@ -20,7 +20,8 @@ ActiveRecord::Base.connection.reset_pk_sequence!('follows')
   professional_account = Professional.create(
     name: "User #{index+1}",
     email: "user#{index+1}@gmail.com",
-    password: "123456"
+    password: "123456",
+    phone: rand(900000000..999999999)
     # birth_day: "01-04-199#{index}",
     # first_name: "User #{index+1}",
     # last_name: "User last name #{index+1}"

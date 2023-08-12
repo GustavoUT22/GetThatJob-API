@@ -21,7 +21,7 @@ module Getthatjobrails
         resource "/login/recruiters", headers: :any, methods: [:get, :post, :options]
         resource "/logout/professionals", headers: :any, methods: [:delete]
         resource "/jobs", headers: :any, methods: [:get, :post]
-        resource "/jobs/:id", headers: :any, methods: [:get, :delete, :options]
+        resource "/jobs/:id", headers: :any, methods: [:get, :delete, :patch, :options]
         resource "/application", headers: :any, methods: [:post, :options]
         resource "/applications", headers: :any, methods: [:post, :get, :options]
         resource "/applications/:id", headers: :any, methods: [:delete]

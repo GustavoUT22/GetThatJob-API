@@ -77,6 +77,7 @@ Rails.application.routes.draw do
   get "/jobs/:id" => "jobs#show"
   get "/jobs" => "jobs#index"
   delete "/jobs/:id" => "jobs#destroy"
+  patch "/jobs/:id" => "jobs#update"
 
   post "/follows" => "follows#create"
   delete "/follows/:id" => "follows#destroy"

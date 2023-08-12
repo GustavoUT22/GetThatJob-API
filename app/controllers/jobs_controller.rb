@@ -52,6 +52,7 @@ class JobsController < ApplicationController
         applications_count: job.applications_count,
         created_at: job.created_at,
         updated_at: job.updated_at,
+        job_status: job.job_status,
         # Otros atributos del job
         applications: job.applications.map do |apply|
           {
